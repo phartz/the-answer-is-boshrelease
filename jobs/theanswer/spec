@@ -1,0 +1,12 @@
+---
+name: theanswer
+templates:
+  ctl.erb: bin/ctl
+
+packages:
+  - theanswer
+
+properties:
+  theanswer.port:
+    description: "The port to run the server at."
+    default: 8080

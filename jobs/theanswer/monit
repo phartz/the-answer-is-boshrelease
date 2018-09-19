@@ -1,0 +1,8 @@
+check process theanswer
+  with pidfile /var/vcap/sys/run/theanswer/pid
+<% if_p('consul.agent_address') do %>
+  depends on consul
+<% end %>
+  start program "/var/vcap/jobs/theanswer/bin/ctl start"
+  stop program "/var/vcap/jobs/theanswer/bin/ctl stop"
+  group vcap

@@ -1,0 +1,7 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+mkdir -p ${BOSH_INSTALL_TARGET}
+rm -rf ${BOSH_INSTALL_TARGET}/*
+cp -Ra theanswer/* ${BOSH_INSTALL_TARGET}
+chmod +x ${BOSH_INSTALL_TARGET}/theanswer

@@ -1,0 +1,5 @@
+#!/bin/bash -x
+
+mkdir -p src/theanswer
+cd src/theanswer
+wget https://github.com/phartz/the-answer-is/releases/download/0.0.1/theanswer

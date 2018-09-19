@@ -1,0 +1,33 @@
+#!/bin/bash
+
+JOB=theanswer
+RUN_DIR=/var/vcap/sys/run/$JOB
+LOG_DIR=/var/vcap/sys/log/$JOB
+LOG_OUT=$LOG_DIR/binding.log
+LOG_ERR=$LOG_DIR/binding.err.log
+PIDFILE=$RUN_DIR/pid
+
+export PORT=<%= p('theanswer.port') %>
+
+case $1 in
+
+  start)
+    mkdir -p $RUN_DIR $LOG_DIR
+    chown -R vcap:vcap $RUN_DIR $LOG_DIR
+
+    /var/vcap/packages/$JOB/$JOB > $LOG_OUT 2> $LOG_ERR &
+    echo $! > $PIDFILE
+
+    ;;
+
+  stop)
+    kill -9 'cat $PIDFILE'
+    rm -f $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: ctl {star|stop}"
+    ;;
+
+esac
